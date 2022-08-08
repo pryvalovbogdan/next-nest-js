@@ -4,16 +4,28 @@ import { FC } from 'react';
 import { Books } from 'src/shared/types/books';
 
 import { fetch } from '../shared/utils/fetch';
+import Head from 'next/head';
+import styled from 'styled-components';
 
 type THomeProps = {
   books: Books[];
 };
 
-const Home: FC<THomeProps> = ({ books = [] }) => {
+const Title = styled.h1`
+  font-size: 50px;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+const Home: FC<THomeProps> = props => {
+  console.log('pro21ps123', props);
   return (
     <div>
-      <h1>Home1</h1>
-      {books.map(({ title, id }) => (
+      <Head>
+        <title>Books app</title>
+        <link rel='icon' href='/public/favicon.png' />
+      </Head>
+      <Title>Home1qdw2312</Title>
+      {props.books.map(({ title, id }) => (
         <div key={id}>
           <Link href={`/${id}`}>{title}</Link>
         </div>

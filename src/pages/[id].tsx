@@ -19,9 +19,7 @@ const Blog: FC<TBooksProps> = ({ books = {} }) => {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export const getServerSideProps: GetServerSideProps<TBooksProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<TBooksProps> = async ctx => {
   const id = ctx.query.id;
   const post = await fetch(`/api/books/${id}`);
 
