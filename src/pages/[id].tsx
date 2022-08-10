@@ -5,14 +5,14 @@ import { Books } from 'src/shared/types/books';
 import { fetch } from '../shared/utils/fetch';
 
 type TBooksProps = {
-  books: Books;
+  book: Books;
 };
 
-const Blog: FC<TBooksProps> = ({ books = {} }) => {
+const Blog: FC<TBooksProps> = ({ book = {} }) => {
   return (
     <div>
       <Link href={'/'}>Home</Link>
-      <h1>Blog {books.title}</h1>
+      <h1>Book {book.title}</h1>
     </div>
   );
 };
@@ -21,9 +21,9 @@ const Blog: FC<TBooksProps> = ({ books = {} }) => {
 // @ts-ignore
 export const getServerSideProps: GetServerSideProps<TBooksProps> = async ctx => {
   const id = ctx.query.id;
-  const post = await fetch(`/api/books/${id}`);
+  const book = await fetch(`/api/books/${id}`);
 
-  return { props: { post } };
+  return { props: { book } };
 };
 
 export default Blog;

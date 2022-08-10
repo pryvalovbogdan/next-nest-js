@@ -1,6 +1,7 @@
 import { Controller, Get, Param, ParseIntPipe, Render, UseInterceptors } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ParamsInterceptor } from './params.interseptors';
+import { ConfigInterceptor } from './config.interceptor';
 
 @Controller()
 export class AppController {
@@ -8,14 +9,14 @@ export class AppController {
 
   @Get('/')
   @Render('index')
-  // @UseInterceptors(ParamsInterceptor)
+  @UseInterceptors(ParamsInterceptor, ConfigInterceptor)
   home() {
     return {};
   }
 
   @Get(':id')
   @Render('[id]')
-  // @UseInterceptors(ParamsInterceptor)
+  @UseInterceptors(ParamsInterceptor, ConfigInterceptor)
   public blogPost(@Param('id') id: string) {
     return {};
   }
