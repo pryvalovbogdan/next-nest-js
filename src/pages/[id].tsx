@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Books } from 'src/shared/types/books';
-import { fetch } from '../shared/utils/fetch';
+import { httpGet } from '../shared/utils/axiosConfig';
 
 type TBooksProps = {
   book: Books;
@@ -21,7 +21,7 @@ const Blog: FC<TBooksProps> = ({ book = {} }) => {
 // @ts-ignore
 export const getServerSideProps: GetServerSideProps<TBooksProps> = async ctx => {
   const id = ctx.query.id;
-  const book = await fetch(`/api/books/${id}`);
+  const book = await httpGet(`/api/books/${id}`);
 
   return { props: { book } };
 };
