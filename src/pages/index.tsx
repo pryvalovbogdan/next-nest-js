@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { Books } from 'src/shared/types/books';
 
-import { fetch } from '../shared/utils/fetch';
+import { httpGet } from '../shared/utils/axiosConfig';
 import Head from 'next/head';
 import styled from 'styled-components';
 
@@ -37,7 +37,7 @@ const Home: FC<THomeProps> = props => {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export const getServerSideProps: GetServerSideProps<THomeProps> = async () => {
-  const books = await fetch(`/api/books`);
+  const books = await httpGet(`/api/books`);
   console.log('books', books);
   return { props: { books } };
 };
