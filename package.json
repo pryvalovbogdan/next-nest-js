@@ -8,19 +8,15 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "yarn build:next && yarn build:nest",
-    "build:next": "sudo next build",
-    "build:nest": "sudo nest build --path ./tsconfig.server.json",
-    "start": "node ./dist/server/main.js",
-    "start:next": "sudo next dev",
-    "start:dev": "NODE_ENV=development sudo nest start --path ./tsconfig.server.json --watch",
+    "build:next": "next build",
+    "build:nest": "nest build --path ./tsconfig.server.json",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:next": "next dev",
+    "start:dev": "NODE_ENV=development nest start --path ./tsconfig.server.json --watch",
     "start:debug": "nest start --path ./tsconfig.server.json --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "lint": "eslint \"{src,apps,libs,test}/**/*.tsx?\" --fix"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
