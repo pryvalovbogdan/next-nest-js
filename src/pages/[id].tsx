@@ -1,12 +1,10 @@
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
-import { Books } from 'src/shared/types/books';
-import { httpGet } from '../shared/utils/axiosConfig';
 
-type TBooksProps = {
-  book: Books;
-};
+import { httpGet } from 'src/shared/utils/axiosConfig';
+
+import { TBooksProps } from './types';
 
 const Blog: FC<TBooksProps> = ({ book = {} }) => {
   return (
@@ -17,8 +15,6 @@ const Blog: FC<TBooksProps> = ({ book = {} }) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 export const getServerSideProps: GetServerSideProps<TBooksProps> = async ctx => {
   const id = ctx.query.id;
   const book = await httpGet(`/api/books/${id}`);
