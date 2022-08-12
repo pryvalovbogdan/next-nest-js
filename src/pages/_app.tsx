@@ -1,33 +1,14 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { FC } from 'react';
+import { AppProps } from 'next/app';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    color: aquamarine;
-  }
-`;
+import WithTheme from 'src/client/theme/WithTheme';
 
-interface ThemeInterface {
-  colors: {
-    primary: string;
-  };
-}
-
-const theme: ThemeInterface = {
-  colors: {
-    primary: '#0070f3',
-  },
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+  return (
+    <WithTheme>
+      <Component {...pageProps} />
+    </WithTheme>
+  );
 };
 
-export default function App({ Component, pageProps }) {
-  return (
-    <>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </>
-  );
-}
+export default App;
